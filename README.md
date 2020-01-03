@@ -4,7 +4,7 @@ Robotics Engineering - ROS Project
 
 ## Report
 
-__Authors__
+**Authors**
 
 Hong Win Soon
 
@@ -14,7 +14,7 @@ Fabio Ribero
 
 Kumar Ankush
 
-__Supervisors__
+**Supervisors**
 
 Ralph SEULIN
 
