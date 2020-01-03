@@ -5,16 +5,25 @@ Robotics Engineering - ROS Project
 ## Report
 
 __Authors__
+
 Hong Win Soon
+
 Theo Petitjean
+
 Fabio Ribero
+
 Kumar Ankush
 
 __Supervisors__
+
 Ralph SEULIN
+
 David FOFI
+
 Raphael DUVERNE
+
 Marc BLANCHON
+
 Thibault CLAMENS
 
 # Introduction
