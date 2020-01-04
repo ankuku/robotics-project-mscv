@@ -6,20 +6,11 @@ Robotics Engineering - ROS Project
 
 **Authors**
 
-Hong Win Soon\\
-Theo Petitjean\\
-Fabio Ribero\\
-Kumar Ankush
+Hong Win SOON, Theo PETITJEAN, Fabio RIBERO, Kumar ANKUSH
 
 **Supervisors**
 
-Ralph SEULIN
-
-David FOFI
-
-Raphael DUVERNE
-
-Marc BLANCHON
+Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON
 
 Thibault CLAMENS
 
