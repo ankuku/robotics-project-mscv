@@ -82,6 +82,26 @@ _RQTGRAPH_ : A visual representation of the nodes and topics of the system with 
 _ROSOUT_ : Console log reporting system in ROS.
 
 
+The packages we have used in our project are:
+- *turtlebot\_vibot*
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
