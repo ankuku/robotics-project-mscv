@@ -27,7 +27,7 @@ Marc BLANCHON
 Thibault CLAMENS
 
 
-**Table of Contents**
+#Table of Contents
 - [Introduction](#introduction)
 - [Objectives](#objectives)
 
