@@ -8,8 +8,7 @@ Robotics Engineering - ROS Project
 
 Hong Win Soon\\
 Theo Petitjean\\
-Fabio Ribero
-
+Fabio Ribero\\
 Kumar Ankush
 
 **Supervisors**
