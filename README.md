@@ -30,6 +30,7 @@ Thibault CLAMENS
 ## Table of Contents
 - [Introduction](#introduction)
   - [Overview](#overview)
+- [Objectives](#objectives)
 
 
 # Introduction
@@ -39,9 +40,11 @@ ROS or Robot Operating System is a meta-operating system used to operate robots 
 It has a range of supported programming languages namely, C++ and Python and is a popular among the open source community. As such, there are a wide range of packages and codes that are available to us to choose from as well as extensive documentation on its operation. Utilising the freely available in-built and additional packages, ROS can give finer control of the robot without writing all control methods from scratch.
 
 
-# Overview
+### Overview
 
 The purpose of this project is to familiarize with ROS. Using unique packages pre-built by developers of ROS, we perform multiple actions of movement, localization, map building and then autonomous navigation. We will break down the process and discuss them in details further below.
+
+# Objectives
 
 The objectives in this project are enumerated below:
 
@@ -65,8 +68,10 @@ We used Python libraries for reading the QR codes at landmark points using the K
 For playing the sound upon successful registering of the QR code using another package called _sound-publisher_.
 
 **7. Creating own launch files to unify all the functions**
+Writing script for one launch file in order to launch all necessary scripts at once instead of calling them once at a time.
 
-
+# Methodology
+=============
 
 
 
