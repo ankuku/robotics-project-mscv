@@ -6,10 +6,8 @@ Robotics Engineering - ROS Project
 
 **Authors**
 
-Hong Win Soon
-
-Theo Petitjean
-
+Hong Win Soon\\
+Theo Petitjean\\
 Fabio Ribero
 
 Kumar Ankush
