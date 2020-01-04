@@ -46,7 +46,7 @@ The purpose of this project is to familiarize with ROS. Using unique packages pr
 The objectives in this project are enumerated below:
 
 **1. Initialization and Navigation of a robot, Turtlebot 2 in this case**
-For initialization and navigation of the robot, we used __turtlebot_vibot__ package compiled by the Robotics Lab, France team at Condorcet (https://github.com/roboticslab-fr), University of Burgundy.
+For initialization and navigation of the robot, we used *turtlebot\_vibot* package compiled by the Robotics Lab, France team at Condorcet (https://github.com/roboticslab-fr), University of Burgundy.
 
 
 **2. Construction of a local map of the environment of the robot**
@@ -62,7 +62,7 @@ Since the newly built map is a planar map, landmark position points in the map c
 We used Python libraries for reading the QR codes at landmark points using the Kinect RGB camera.
 
 **6. Play sound once QR code is detected**
-For playing the sound upon successful registering of the QR code using another package called __sound-publisher__.
+For playing the sound upon successful registering of the QR code using another package called *sound-publisher*.
 
 **7. Creating own launch files to unify all the functions**
 
