@@ -83,10 +83,11 @@ Let's break down certain important concepts of ROS and how it works.
 
 
 The packages we have used in our project are:
-- *turtlebot\_vibot*
- 
+ - [*turtlebot\_vibot*](https://github.com/roboticslab-fr)
+ Contains nodes which can initialize and operate the Kobuki base of the Turtlebot, the Kinect and the LIDAR connected to a computer. The package also has nodes for controlling the Kobuki base for navigation and publishing the odometry data with relevant topics in the subpackage _turtlebot\_vibot\_nav_. This subpackage also contains amcl (Adaptive Monte Carlo Localization) node to build a map with localization data which is fetched from LIDAR and Kinect. 
 
-
+ - [*rbx1*](https://github.com/pirobot/rbx1)
+ ROS By Example or rbx, contains multiple nodes which make use of 
 
 
 
