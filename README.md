@@ -94,6 +94,9 @@ The packages we have used in our project are:
 The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run execute the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_ 
 
 
+# Mapping
+
+Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab. 
 
 
 
