@@ -92,6 +92,11 @@ The packages we have used in our project are:
  - [*turtlebot\_rviz\_launchers*](http://wiki.ros.org/turtlebot_rviz_launchers) - 
 The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_. 
 
+Download the MSCV5 launch files by navigating to your _catkin\_ws/src_ folder and in the terminal, type:
+
+``` {.shell} git clone https://github.com/synthaseatp/ 
+```
+
 The first launch file calls for the following nodes:
 > roslaunch grp_5_master grp_5.launch
 
