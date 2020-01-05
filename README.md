@@ -89,10 +89,22 @@ The packages we have used in our project are:
  - [*rbx1*](https://github.com/pirobot/rbx1) - 
  ROS By Example or rbx, contains multiple nodes which make use of various control nodes on both the master and the client terminal. We exclusively make use of a Python script in the subpackage _cv\_bridge\_demo.py_ in '_rbx1\_vision_' which we have modified to add our script to detect the QR code from Kinect's camera using OpenCV libraries.
 
- - [custom package]()
+ - [*turtlebot\_rviz\_launchers*](http://wiki.ros.org/turtlebot_rviz_launchers) - 
+The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_. 
 
-The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run execute the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_ 
+The first launch file calls for the following nodes:
+> roslaunch grp_5_master grp_5.launch
 
+The launch file executes the following launch files on the client:
+> turtlebot_vibot_bringup 3dsensor_rplidar.launch
+> turtlebot_vibot_nav amcl_demo_rplidar.launch 
+
+And on the master:
+> turtlebot_rviz_launchers view_navigation.launch
+
+Another launch file launches a Python script modified from _rbx1_ package which performs predefined navigation and publishes QR code information on the console.
+> python 'rospack find rbx1_vision'/nodes/Move4Test.py
+> sound_publisher sound_publisher.launch
 
 
 
