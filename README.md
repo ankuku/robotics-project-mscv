@@ -138,7 +138,7 @@ $ roscd turtlebot_vibot_nav/maps/
 $ rosrun map_server map_saver -f my_map
 ```
 
-# Localization
+# Localization and  Navigation via the RVIZ
 
 Before we can proceed with the navigation of the turtlebot, we need to first localize the map and then run the robot in the RVIZ manually to obtain the point coordinates and quartenion of the map. 
 
@@ -164,11 +164,17 @@ In order to start the navigation process of the turtlebot through the RVIZ, we h
 
 By moving the robot across the map and marking its initialisation position, we are able to obtain the quartenion information of the robot. This will allow us to specify the waypoints of the robot for later use during our autonomous navigation of the turtlebot. 
 
+![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/Quart_pose.jpg)
 
+We then select 4 waypoints on the map to be used during the autonomous navigation process of the turtlebot. 
 
+![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/waypoint.JPG)
 
-
-
+1) Home- Where we start the turtlebot and the place where the turtlebot returns 
+2) Greek- The first waypoint, named in respect of the Greek team in our class. 
+3) Front- The second way point, which is in front of the lab 
+4) France- The third waypoint, named in respect of the French team in our class.
+5) Rear- The fourth way point, which is at the back of the lab 
 
 
 
