@@ -104,11 +104,29 @@ The master and client are assigned their own WiFi modules, connected over a loca
 
 # Mapping
 
-Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab. 
+The mapping was conducted with the reference guide provided from the lecturer [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot)
+Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab.
+
+We first perform the minimum launch on the turtlebot
+```
+$ roslaunch turtlebot_vibot_bringup minimal_rplidar.launch
+```
+followed by initialising the modofied gmapping demo file 
 
 ```
-test
+$ roslaunch turtlebot_vibot_nav gmapping_demo_rplidar.launch
 ```
+
+Next we need to initialise the joystick teleop for the logitech controller on the Workstation
+```
+$roslaunch turtlebot_teleop logitech.launch --screen
+```
+
+As well as the Rviz on the workstation for visualization
+```
+$ roslaunch turtlebot_rviz_launchers view_navigation.launch
+```
+After moving carefully behind the turtlebot, we are able to obtain the following map 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/lena.jpg)
 
 
