@@ -94,7 +94,8 @@ The master and client are assigned their own WiFi modules, connected over a loca
 
 Download the MSCV5 launch files by navigating to your _catkin\_ws/src_ folder and in the terminal, type:
 
-``` {.shell} git clone https://github.com/synthaseatp/ 
+``` {.shell} 
+git clone https://github.com/synthaseatp/ 
 ```
 
 The first launch file calls for the following nodes:
