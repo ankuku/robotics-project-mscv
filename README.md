@@ -104,7 +104,8 @@ The master and client are assigned their own WiFi modules, connected over a loca
 
 # Mapping
 
-The mapping was conducted with the reference guide provided from the lecturer [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot)
+The mapping was conducted with the reference guide provided from the lecturer [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot).
+
 Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab.
 
 We first perform the minimum launch on the turtlebot
@@ -130,14 +131,38 @@ After moving carefully behind the turtlebot, we are able to obtain the following
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/map.JPG)
 
+Which is saved with the following command 
+```
+$ roscd turtlebot_vibot_nav/maps/
 
+$ rosrun map_server map_saver -f my_map
+```
 
+# Localization
 
+Before we can proceed with the navigation of the turtlebot, we need to first localize the map and then run the robot in the RVIZ manually to obtain the point coordinates and quartenion of the map. 
 
+We first define the turtlebot mapfile variable and launch the AMCL demo file together using the following command 
 
+```
+$ roslaunch turtlebot_vibot_nav amcl_demo_rplidar.launch map_file:=`rospack find turtlebot_vibot_nav`/maps/Soon_map_15Nov.yaml
+```
+While we could also export the turtlebot mapfile variable using the following command, 
 
+```
+$ export TURTLEBOT_MAP_FILE=/...path.../map.yaml
+```
+We noticed that sometimes the command will result in a corrupted map, causing failure during the navigation process. 
 
+We then run the RVIZ on the workstation 
 
+```
+$ roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
+```
+
+In order to start the navigation process of the turtlebot through the RVIZ, we have to select the "2D point pose estimate" button to help the turtlebot discover its initial position. Finally, we can move the turtlebot around the map using the "2D Nav Goal" button. 
+
+By moving the robot across the map and marking its initialisation position, we are able to obtain the quartenion information of the robot. This will allow us to specify the waypoints of the robot for later use during our autonomous navigation of the turtlebot. 
 
 
 
