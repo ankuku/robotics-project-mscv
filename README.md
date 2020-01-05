@@ -127,7 +127,8 @@ As well as the Rviz on the workstation for visualization
 $ roslaunch turtlebot_rviz_launchers view_navigation.launch
 ```
 After moving carefully behind the turtlebot, we are able to obtain the following map 
-![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/lena.jpg)
+
+![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/map.JPG)
 
 
 
