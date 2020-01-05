@@ -89,13 +89,13 @@ The packages we have used in our project are:
  - [*rbx1*](https://github.com/pirobot/rbx1) - 
  ROS By Example or rbx, contains multiple nodes which make use of various control nodes on both the master and the client terminal. We exclusively make use of a Python script in the subpackage _cv\_bridge\_demo.py_ in '_rbx1\_vision_' which we have modified to add our script to detect the QR code from Kinect's camera using OpenCV libraries.
 
-- [*rplidar_ros*] (https://github.com/Slamtec/rplidar_ros) - 
+- [*rplidar_ros*](https://github.com/Slamtec/rplidar_ros) - 
 
 A Lidar package from Slamtec, installation and configuration of it is required for the operation of the Lidar
 
-- [*cv_bridge*] (http://wiki.ros.org/cv_bridge) -
+- [*cv_bridge*](http://wiki.ros.org/cv_bridge) -
 
-converts between ROS Image messages and OpenCV images.
+Converts between ROS Image messages and OpenCV images. As the QR code reader program is based on the OpenCV platform, the bridge is required to translate between ROS and the OpenCV program.  
 
  - [custom package]()
 
@@ -107,7 +107,7 @@ The master and client are assigned their own WiFi modules, connected over a loca
 Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab. 
 
 ```
-$bmv
+test
 ```
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/lena.jpg)
 
