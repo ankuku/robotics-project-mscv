@@ -67,19 +67,19 @@ Writing script for one launch file in order to launch all necessary scripts at o
 
 Let's break down certain important concepts of ROS and how it works.
 
-- _NODE_ : A node can be understood as a task, just like processes in an operating system. A node is a program to execute certain functions. By subscribing to a 'topic' and processing the information, a node then publishes the processed information to another 'topic'. 
+- [_NODE_](http://wiki.ros.org/Nodes) : A node can be understood as a task, just like processes in an operating system. A node is a program to execute certain functions. By subscribing to a 'topic' and processing the information, a node then publishes the processed information to another 'topic'. 
 
-- _TOPIC_ : A topic is a processed information index which has certain messages inside post- or pre-processing of information from a node. One can check existing topics by using command _rostopic_. 
+- [_TOPIC_](http://wiki.ros.org/Topics) : A topic is a processed information index which has certain messages inside post- or pre-processing of information from a node. One can check existing topics by using command _rostopic_. 
 
-- _MESSAGES_ : The information inside the various topics. Each topic, depending on the type of topic, has different information and may continuously publish information to the system.
+- [_MESSAGES_](http://wiki.ros.org/Messages) : The information inside the various topics. Each topic, depending on the type of topic, has different information and may continuously publish information to the system.
 
-- _MASTER_ : It us the 'master' node. A system has unique master nodes for different devices. If an electronic system is interacting with different components which were not designed to work together natively, those components will have different master nodes which will publish processed information over a topic which can be subscribed by another master node.
+- [_MASTER_](http://wiki.ros.org/Master) : It us the 'master' node. A system has unique master nodes for different devices. If an electronic system is interacting with different components which were not designed to work together natively, those components will have different master nodes which will publish processed information over a topic which can be subscribed by another master node.
 
-- _ROSLAUNCH_ : It is the command to launch ROS commands which will in turn start the different nodes.
+- [_ROSLAUNCH_](http://wiki.ros.org/roslaunch) : It is the command to launch ROS commands which will in turn start the different nodes.
 
-- _RQTGRAPH_ : A visual representation of the nodes and topics of the system with connections showing where the nodes originate and which topics are being published and subscribed by which systems.
+- [_RQT\_GRAPH_](http://wiki.ros.org/rqt_graph) : A visual representation of the nodes and topics of the system with connections showing where the nodes originate and which topics are being published and subscribed by which systems.
 
-- _ROSOUT_ : Console log reporting system in ROS.
+- [_ROSOUT_](http://wiki.ros.org/rosout) : Console log reporting system in ROS.
 
 
 The packages we have used in our project are:
