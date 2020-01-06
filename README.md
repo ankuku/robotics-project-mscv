@@ -20,6 +20,7 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
 - [Methodology](#methodology)
   - [Mapping](#mapping)
   - [Localization and Navigation via the RVIZ](#localization_and_navigation_via_the_rviz)
+  - [Localization, Autonomous Navigation, and Task Activation](#Localization,_Autonomous_Navigation,_and_Task_Activation)
 
 
 # Introduction
