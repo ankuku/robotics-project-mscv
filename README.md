@@ -19,9 +19,12 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
 - [Objectives](#objectives)
 - [Methodology](#methodology)
   - [Mapping](#mapping)
-  - [Localization and Navigation via the RVIZ](#localization_and_navigation_via_the_rviz)
-  - [Localization, Autonomous Navigation, and Task Activation](#Localization,_Autonomous_Navigation,_and_Task_Activation)
-
+  - [Localization and Navigation via the RVIZ](#localization-and-navigation-via-the-rviz)
+  - [Localization, Autonomous Navigation, and Task Activation](#Localization,-Autonomous-Navigation,-and-Task-Activation)
+  - [QR Detection and Sound Play](#QR-Detection-and-Sound-Play)
+    - [Using PyZbar](#using-pyzbar)
+    - [Playing sound](#playing-sound)
+    - [Advantages and challenges of using PyZbar](#Advantages-and-challenges-of-using-PyZbar)
 
 # Introduction
 
@@ -105,7 +108,7 @@ The master and client are assigned their own WiFi modules, connected over a loca
 Download the MSCV5 launch files by navigating to your _catkin\_ws/src_ folder and in the terminal, type:
 
 ``` {.shell} 
-$ git clone https://github.com/synthaseatp/ 
+$ git clone https://github.com/synthaseatp/grp_5_master.git
 ```
 
 The first launch file calls for the following nodes:
@@ -298,7 +301,7 @@ The turtlebot will continue to go around the waypoints, until the program is ter
 
 #### using Pyzbar
 
-Zbar is an old method but appears to be one of the best method in order to detect and read Qr codes. The main idea behind the detection is to go through an image researching typical point, rectangle and symbol, which are used inside the Qr code. First of all, the image is read with a scanner function, then it starts to search the symbol and then decodes it. For more information about the libraries, check the source code on Github [10]. Thanks to a decode function using this library, we are able to obtain several information about our Qr code, such as : 
+Zbar is an old method but appears to be one of the best method in order to detect and read Qr codes. The main idea behind the detection is to go through an image researching typical point, rectangle and symbol, which are used inside the Qr code. First of all, the image is read with a scanner function, then it starts to search the symbol and then decodes it. For more information about the libraries, check the source code on Github [10]. Thanks to a decode function using this library, we are able to obtain several information about our Qr code, such as: 
 
 - Qr code type (barcode,Qrcode);
 - Data coded inside the Qr or bar code;
@@ -373,45 +376,13 @@ def talker(self, datain):
   self.song_pub.publish(Song_cmd)
   rospy.sleep(1)
 ```
-Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team.
+Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team. May the Force be with you.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Drawback and advantage
+#### Advantages and challenges of using PyZbar
 
 This new method of PyZbar appears to be really powerful in order to read the information from the Qr code. Its detection is also really sensitive. If we mix this method to some pre-processing steps such as Hough circles, it can slightly improves the computation power required to read the Qr code and obtains information about it. We can also imagine a lot of Augmented reality applications linked with this field and we will discuss about it in the conclusion as a future work. 
 
 Somehow, this method got also some really weak points. It appears to be sensitive to some really weak points. It appears to be sensitive to deformation and to motions. However, the motion problem could be fixed with pre-processing steps
 
 
+# Challenges Faced
