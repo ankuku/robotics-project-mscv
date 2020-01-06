@@ -18,8 +18,8 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
   - [Overview](#overview)
 - [Objectives](#objectives)
 - [Methodology](#methodology)
- - [Mapping](#mapping)
- - [Localization and Navigation via the RVIZ](#localization and navigation via the rviz)
+  - [Mapping](#mapping)
+  - [Localization and Navigation via the RVIZ](#localization_and_navigation_via_the_rviz)
 
 
 # Introduction
