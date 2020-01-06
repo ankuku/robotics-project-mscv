@@ -111,6 +111,28 @@ $ git clone https://github.com/synthaseatp/
 The first launch file calls for the following nodes:
 > roslaunch grp_5 grp_5_master.launch
 
+The following are the contents of the launch file on the master:
+
+```
+<launch>
+  <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+  <include file="$(find rbx1_vision)/launch/qr_read.launch" />
+  <node pkg="grp_5" name="move4test" type="nodes/test_joker.py" output="screen" /
+</launch>
+```
+
+The following are the contents of the launch file on the master:
+
+```
+<launch>
+  <include file="$(find turtlebot_vibot_bringup)/launch/minimal_rplidar.launch" />
+  <include file="$(find turtlebot_vibot_bringup)/launch/3dsensor_rplidar.launch" />
+  <include file="$(find turtlebot_vibot_nav)/launch/amcl_demo_rplidar.launch" >
+    <arg name="map_file" value="$(find turtlebot_vibot_nav)/maps/Soon_map_15Nov.yaml" />
+  </include>
+</launch>
+```
+
 The launch file executes the following launch files on the client:
 > turtlebot_vibot_bringup 3dsensor_rplidar.launch
 > turtlebot_vibot_nav amcl_demo_rplidar.launch 
@@ -118,9 +140,6 @@ The launch file executes the following launch files on the client:
 And on the master:
 > turtlebot_rviz_launchers view_navigation.launch
 
-Another launch file launches a Python script modified from _rbx1_ package which performs predefined navigation and publishes QR code information on the console.
-> python 'rospack find rbx1_vision'/nodes/Move4Test.py
-> sound_publisher sound_publisher.launch
 
 
 ## Mapping
@@ -191,16 +210,16 @@ We then select 4 waypoints on the map to be used during the autonomous navigatio
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/waypoint.JPG)
 
-1) Home- Where we start the turtlebot and the place where the turtlebot returns 
-2) Greek- The first waypoint, named in respect of the Greek team in our class. 
-3) Front- The second way point, which is in front of the lab 
-4) France- The third waypoint, named in respect of the French team in our class.
-5) Rear- The fourth way point, which is at the back of the lab 
+1) Home - Where we start the turtlebot and the place where the turtlebot returns 
+2) Greek - The first waypoint, named in respect of the Greek team in our class. 
+3) Front - The second way point, which is in front of the lab 
+4) France - The third waypoint, named in respect of the French team in our class.
+5) Rear - The fourth way point, which is at the back of the lab 
 
 
 ## Localization, Autonomous Navigation, and Task Activation
 
-The core of the program is based on the ROS by Example code that is given to us in the ROS By Example Vol1, that can be obtained via this link 
+The core of the program is based on the ROS by Example code that is given to us in the ROS By Example, Volume 1, that can be obtained via this link:
 
 https://github.com/pirobot/rbx1/blob/indigo-devel/rbx1_nav/nodes/nav_test.py
 
@@ -277,6 +296,84 @@ The turtlebot will continue to go around the waypoints, until the program is ter
 
 ## QR Detection and Sound Play
 
+#### using Pyzbar
+
+Zbar is an old method but appears to be one of the best method in order to detect and read Qr codes. The main idea behind the detection is to go through an image researching typical point, rectangle and symbol, which are used inside the Qr code. First of all, the image is read with a scanner function, then it starts to search the symbol and then decodes it. For more information about the libraries, check the source code on Github [10]. Thanks to a decode function using this library, we are able to obtain several information about our Qr code, such as : 
+
+- Qr code type (barcode,Qrcode);
+- Data coded inside the Qr or bar code;
+- A rectangle which is actually surrounding the Qr;
+- A polygon that contain the main point of the Qr code.
+
+```
+def decode(self, im) :
+  # Find barcodes and QR codes
+  decodedObjects = pyzbar.decode(im)
+  return decodedObjects
+
+def qr_code_processor(self, frame):
+  #Read image and first init in the loop
+  im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+  self.decodedObjects = self.decode(im)
+
+  for decodedObject in self.decodedObjects:
+    points = decodedObject.polygon
+
+    self.nts = decodedObject.data.decode("utf-8")
+
+    # If the points do not form a quad, find convex hull
+    if len(points) > 4 :
+      hull = cv2.convexHull(np.array([point for point in points], dtype=np.float32))
+      hull = list(map(tuple, np.squeeze(hull)))
+    else :
+      hull = points;
+    # Number of points in the convex hull
+    n = len(hull)
+
+    # Draw the convext hull
+    for j in range(0,n):
+      cv2.line(frame, hull[j], hull[ (j+1) % n], (255,0,0), 3)
+
+    x = decodedObject.rect.left
+    y = decodedObject.rect.top
+
+    if self.last_data is None or self.last_data != decodedObject.data:
+      self.last_data = decodedObject.data
+      print(x, y)
+      print('Type : ', decodedObject.type)
+      print('Data : ', decodedObject.data,'\n')
+
+    barCode = str(decodedObject.data)
+    cv2.putText(frame, barCode, (x, y), font, 1, (0,255,255), 2, cv2.LINE_AA)
+
+  # Display the resulting frame
+  # cv2.imshow('frame',frame)
+  return frame
+```
+
+Thanks to this different information we will be able to do several interesting works with our Qr code. The first interesting part is we are now able to recognize different types of codes, such as bar codes and Qr codes. We are also able to track the Qr code thanks to the information relative to the position of the decoded object (polygon and point). With this geometrical information it becomes quite easy to create a bounding box around the Qr code and to track it. Thanks to the coordinate of the rectangle, we are able to place a label on the top of our Qr code whatever its position. Then, we are also able to read whatever is coded inside the Qr code. That opens a new dimension on possible Augmented reality applications and we will discuss about it in other parts.
+
+#### Playing sound
+
+Using package of '_sound\_package_' and publishing unique sounds when the QR code are sucessfully decrypted.
+
+```
+def talker(self, datain):
+  Song_cmd = SongTitle()
+
+  if datain == 'TAG1_Greek':
+    Song_cmd.song = 0;
+  elif datain == 'TAG2_Front':
+    Song_cmd.song = 1;
+  elif datain == 'TAG3_France':
+    Song_cmd.song = 2;
+  elif datain == 'TAG4_Rear':
+    Song_cmd.song = 3;
+
+  self.song_pub.publish(Song_cmd)
+  rospy.sleep(1)
+```
+Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team.
 
 
 
@@ -297,5 +394,24 @@ The turtlebot will continue to go around the waypoints, until the program is ter
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Drawback and advantage
+
+This new method of PyZbar appears to be really powerful in order to read the information from the Qr code. Its detection is also really sensitive. If we mix this method to some pre-processing steps such as Hough circles, it can slightly improves the computation power required to read the Qr code and obtains information about it. We can also imagine a lot of Augmented reality applications linked with this field and we will discuss about it in the conclusion as a future work. 
+
+Somehow, this method got also some really weak points. It appears to be sensitive to some really weak points. It appears to be sensitive to deformation and to motions. However, the motion problem could be fixed with pre-processing steps
 
 
