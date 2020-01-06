@@ -383,7 +383,7 @@ def talker(self, datain):
   self.song_pub.publish(Song_cmd)
   rospy.sleep(1)
 ```
-Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team. May the Force be with him.
+Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team. 
 
 #### Advantages and challenges of using PyZbar
 
