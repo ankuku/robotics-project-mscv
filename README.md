@@ -26,6 +26,7 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
     - [Playing sound](#playing-sound)
     - [Advantages and challenges of using PyZbar](#Advantages-and-challenges-of-using-PyZbar)
 - [Challenges Faced](#Challenges-Faced)
+- [References](#references)
 
 # Introduction
 
@@ -148,11 +149,11 @@ And on the master:
 
 ## Mapping
 
-The mapping was conducted with the reference guide provided from the lecturer [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot).
+The mapping was conducted with the reference guide provided from the professors: [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot).
 
-Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab.
+Utilising LIDAR, and manual control of the Turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab.
 
-We first perform the minimum launch on the turtlebot
+We first perform the minimum launch on the Turtlebot
 ``` {.shell}
 $ roslaunch turtlebot_vibot_bringup minimal_rplidar.launch
 ```
