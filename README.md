@@ -50,7 +50,7 @@ For initialization and navigation of the robot, we used _turtlebot\_vibot_ packa
 
 **2. Construction of a local map of the environment of the robot**
 
-Using the same package we build the map of the robotics lab of Condorcet. 
+Using the same package we build the map of the robotics lab of Condorcet.
 
 **3. Movement of robot in the newly built map**
 
@@ -76,9 +76,9 @@ Writing script for one launch file in order to launch all necessary scripts at o
 
 Let's break down certain important concepts of ROS and how it works.
 
-- [_NODE_](http://wiki.ros.org/Nodes) : A node can be understood as a task, just like processes in an operating system. A node is a program to execute certain functions. By subscribing to a 'topic' and processing the information, a node then publishes the processed information to another 'topic'. 
+- [_NODE_](http://wiki.ros.org/Nodes) : A node can be understood as a task, just like processes in an operating system. A node is a program to execute certain functions. By subscribing to a 'topic' and processing the information, a node then publishes the processed information to another 'topic'.
 
-- [_TOPIC_](http://wiki.ros.org/Topics) : A topic is a processed information index which has certain messages inside post- or pre-processing of information from a node. One can check existing topics by using command _rostopic_. 
+- [_TOPIC_](http://wiki.ros.org/Topics) : A topic is a processed information index which has certain messages inside post- or pre-processing of information from a node. One can check existing topics by using command _rostopic_.
 
 - [_MESSAGES_](http://wiki.ros.org/Messages) : The information inside the various topics. Each topic, depending on the type of topic, has different information and may continuously publish information to the system.
 
@@ -92,24 +92,24 @@ Let's break down certain important concepts of ROS and how it works.
 
 
 The packages we have used in our project are:
- - [*turtlebot\_vibot*](https://github.com/roboticslab-fr) - 
- Contains nodes which can initialize and operate the Kobuki base of the Turtlebot, the Kinect and the LIDAR connected to a computer. The package also has nodes for controlling the Kobuki base for navigation and publishing the odometry data with relevant topics in the subpackage _turtlebot\_vibot\_nav_. This subpackage also contains amcl (Adaptive Monte Carlo Localization) node to build a map with localization data which is fetched from LIDAR and Kinect. 
+ - [*turtlebot\_vibot*](https://github.com/roboticslab-fr) -
+ Contains nodes which can initialize and operate the Kobuki base of the Turtlebot, the Kinect and the LIDAR connected to a computer. The package also has nodes for controlling the Kobuki base for navigation and publishing the odometry data with relevant topics in the subpackage _turtlebot\_vibot\_nav_. This subpackage also contains amcl (Adaptive Monte Carlo Localization) node to build a map with localization data which is fetched from LIDAR and Kinect.
 
- - [*rbx1*](https://github.com/pirobot/rbx1) - 
+ - [*rbx1*](https://github.com/pirobot/rbx1) -
  ROS By Example or rbx, contains multiple nodes which make use of various control nodes on both the master and the client terminal. We exclusively make use of a Python script in the subpackage _cv\_bridge\_demo.py_ in '_rbx1\_vision_' which we have modified to add our script to detect the QR code from Kinect's camera using OpenCV libraries.
 
- - [*rplidar_ros*](https://github.com/Slamtec/rplidar_ros) - 
-A Lidar package from Slamtec, installation and configuration of it is required for the operation of the Lidar.
+ - [*rplidar_ros*](https://github.com/Slamtec/rplidar_ros) -
+A LIDAR package from Slamtec, installation and configuration of it is required for the operation of the LIDAR.
 
  - [*cv_bridge*](http://wiki.ros.org/cv_bridge) -
 Converts between ROS Image messages and OpenCV images. As the QR code reader program is based on the OpenCV platform, the bridge is required to translate between ROS and the OpenCV program.  
 
- - [*turtlebot\_rviz\_launchers*](http://wiki.ros.org/turtlebot_rviz_launchers) - 
-The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_. 
+ - [*turtlebot\_rviz\_launchers*](http://wiki.ros.org/turtlebot_rviz_launchers) -
+The master and client are assigned their own WiFi modules, connected over a local network and a given static IPs. Usually, the client cannot be connected to two network adaptors at the same time. Once the client and the master have been turned on and connected over the local network, we run the custom launch file which in turn calls for execution of other launch files from the _turtlebot\_vibot_.
 
 Download the MSCV5 launch files by navigating to your _catkin\_ws/src_ folder and in the terminal, type:
 
-``` {.shell} 
+``` {.shell}
 $ git clone https://github.com/synthaseatp/grp_5_master.git
 ```
 
@@ -140,7 +140,7 @@ The following are the contents of the launch file on the master:
 
 The launch file executes the following launch files on the client:
 > turtlebot_vibot_bringup 3dsensor_rplidar.launch
-> turtlebot_vibot_nav amcl_demo_rplidar.launch 
+> turtlebot_vibot_nav amcl_demo_rplidar.launch
 
 And on the master:
 > turtlebot_rviz_launchers view_navigation.launch
@@ -157,7 +157,7 @@ We first perform the minimum launch on the Turtlebot
 ``` {.shell}
 $ roslaunch turtlebot_vibot_bringup minimal_rplidar.launch
 ```
-followed by initialising the modofied gmapping demo file 
+followed by initialising the modofied gmapping demo file
 
 ``` {.shell}
 $ roslaunch turtlebot_vibot_nav gmapping_demo_rplidar.launch
@@ -176,7 +176,7 @@ After moving carefully behind the turtlebot, we are able to obtain the following
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/map.JPG)
 
-Which is saved with the following command 
+Which is saved with the following command
 ``` {.shell}
 $ roscd turtlebot_vibot_nav/maps/
 
@@ -185,41 +185,41 @@ $ rosrun map_server map_saver -f my_map
 
 ## Localization and Navigation via the RVIZ
 
-Before we can proceed with the navigation of the turtlebot, we need to first localize the map and then run the robot in the RVIZ manually to obtain the point coordinates and quartenion of the map. 
+Before we can proceed with the navigation of the turtlebot, we need to first localize the map and then run the robot in the RVIZ manually to obtain the point coordinates and quartenion of the map.
 
-We first define the turtlebot mapfile variable and launch the AMCL demo file together using the following command 
+We first define the turtlebot mapfile variable and launch the AMCL demo file together using the following command
 
 ``` {.shell}
 $ roslaunch turtlebot_vibot_nav amcl_demo_rplidar.launch map_file:=`rospack find turtlebot_vibot_nav`/maps/Soon_map_15Nov.yaml
 ```
-While we could also export the turtlebot mapfile variable using the following command, 
+While we could also export the turtlebot mapfile variable using the following command,
 
 ``` {.shell}
 $ export TURTLEBOT_MAP_FILE=/...path.../map.yaml
 ```
-We noticed that sometimes the command will result in a corrupted map, causing failure during the navigation process. 
+We noticed that sometimes the command will result in a corrupted map, causing failure during the navigation process.
 
-We then run the RVIZ on the workstation 
+We then run the RVIZ on the workstation
 
 ``` {.shell}
 $ roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
 ```
 
-In order to start the navigation process of the turtlebot through the RVIZ, we have to select the "2D point pose estimate" button to help the turtlebot discover its initial position. Finally, we can move the turtlebot around the map using the "2D Nav Goal" button. 
+In order to start the navigation process of the turtlebot through the RVIZ, we have to select the "2D point pose estimate" button to help the turtlebot discover its initial position. Finally, we can move the turtlebot around the map using the "2D Nav Goal" button.
 
-By moving the robot across the map and marking its initialisation position, we are able to obtain the quartenion information of the robot. This will allow us to specify the waypoints of the robot for later use during our autonomous navigation of the turtlebot. 
+By moving the robot across the map and marking its initialisation position, we are able to obtain the quartenion information of the robot. This will allow us to specify the waypoints of the robot for later use during our autonomous navigation of the turtlebot.
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/Quart_pose.jpg)
 
-We then select 4 waypoints on the map to be used during the autonomous navigation process of the turtlebot. 
+We then select 4 waypoints on the map to be used during the autonomous navigation process of the turtlebot.
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/waypoint.JPG)
 
-1) Home - Where we start the turtlebot and the place where the turtlebot returns 
-2) Greek - The first waypoint, named in respect of the Greek team in our class. 
-3) Front - The second way point, which is in front of the lab 
+1) Home - Where we start the turtlebot and the place where the turtlebot returns
+2) Greek - The first waypoint, named in respect of the Greek team in our class.
+3) Front - The second way point, which is in front of the lab
 4) France - The third waypoint, named in respect of the French team in our class.
-5) Rear - The fourth way point, which is at the back of the lab 
+5) Rear - The fourth way point, which is at the back of the lab
 
 
 ## Localization, Autonomous Navigation, and Task Activation
@@ -228,7 +228,7 @@ The core of the program is based on the ROS by Example code that is given to us 
 
 https://github.com/pirobot/rbx1/blob/indigo-devel/rbx1_nav/nodes/nav_test.py
 
-The program has been modified in order to suit and parts of the program is explained as follows: 
+The program has been modified in order to suit and parts of the program is explained as follows:
 ```
 class NavTest():
   def __init__(self):
@@ -238,7 +238,7 @@ class NavTest():
     self.rest_time = rospy.get_param("~rest_time", 10)
 
 ```
-We set the time for how long the robot will stop at each location. The reason why this is important is to give enough time for the robot to read the code and play the song. 
+We set the time for how long the robot will stop at each location. The reason why this is important is to give enough time for the robot to read the code and play the song.
 
 ```
 locations = dict()
@@ -249,7 +249,7 @@ locations = dict()
   locations['Home'] = Pose(Point(-0.038, 0.039, 0.000), Quaternion(0.000, 0.000, 0.690, 0.724))
 ```
 
-The waypoints are then built into a dictionary, specifying the coordinates as well as the Quaternion pose of the robot. 
+The waypoints are then built into a dictionary, specifying the coordinates as well as the Quaternion pose of the robot.
 
 ```
 # Subscribe to the move_base action server
@@ -258,7 +258,7 @@ self.bridgeDemo = qr_read.cvBridgeDemo()
 
 rospy.loginfo("Waiting for move_base action server...")
 ```
-We then subscribe to the move base action server along with the QR code reader information. 
+We then subscribe to the move base action server along with the QR code reader information.
 
 ```
 # Begin the main loop and run through a sequence of locations
@@ -276,7 +276,7 @@ while not rospy.is_shutdown():
   # Get the next location in the current sequence
   location = sequence[i]
 ```
-Here we define the sequence in which the Turtlebot will move from one point to another. The turtle bot is set up so that it will move from the Home>Greek>Front>France>Rear before finally returning to its home position. After which it will repeat the whole process again. 
+Here we define the sequence in which the Turtlebot will move from one point to another. The turtle bot is set up so that it will move from the Home>Greek>Front>France>Rear before finally returning to its home position. After which it will repeat the whole process again.
 
 ```
 if not finished_within_time:
@@ -295,9 +295,9 @@ else:
 ```
 Here we begin the reading process each time the robot has successfully reached its position. When the turtlebot sucessfully reaches a targetted waypoint, it will call out to the QR reader module, read the code that is displayed by the QR code, which will then be displayed in the form of a string. This in turn will then activate the song player to play a song according to the code that it has read.
 
-If the robot has failed to reach its goal for whatever reason, it will print out an error message. 
+If the robot has failed to reach its goal for whatever reason, it will print out an error message.
 
-The turtlebot will continue to go around the waypoints, until the program is terminated. 
+The turtlebot will continue to go around the waypoints, until the program is terminated.
 
 Here's the view of start of the navigation:
 ![begin](https://github.com/synthaseatp/robotics-project-mscv/blob/master/Image/begin.png)
@@ -308,7 +308,7 @@ Where you can see that we accessing depth map, RGB image and a processed image s
 
 #### using Pyzbar
 
-Zbar is an old method but appears to be one of the best method in order to detect and read Qr codes. The main idea behind the detection is to go through an image researching typical point, rectangle and symbol, which are used inside the Qr code. First of all, the image is read with a scanner function, then it starts to search the symbol and then decodes it. For more information about the libraries, check the source code on Github [10]. Thanks to a decode function using this library, we are able to obtain several information about our Qr code, such as: 
+Zbar is an old method but appears to be one of the best method in order to detect and read Qr codes. The main idea behind the detection is to go through an image researching typical point, rectangle and symbol, which are used inside the Qr code. First of all, the image is read with a scanner function, then it starts to search the symbol and then decodes it. For more information about the libraries, check the source code on Github [10]. Thanks to a decode function using this library, we are able to obtain several information about our Qr code, such as:
 
 - Qr code type (barcode,Qrcode);
 - Data coded inside the Qr or bar code;
@@ -387,7 +387,7 @@ Custom music tunes are played at each detection of QR code which was encoded by 
 
 #### Advantages and challenges of using PyZbar
 
-This new method of PyZbar appears to be really powerful in order to read the information from the Qr code. Its detection is also really sensitive. If we mix this method to some pre-processing steps such as Hough circles, it can slightly improves the computation power required to read the Qr code and obtains information about it. We can also imagine a lot of Augmented reality applications linked with this field and we will discuss about it in the conclusion as a future work. 
+This new method of PyZbar appears to be really powerful in order to read the information from the Qr code. Its detection is also really sensitive. If we mix this method to some pre-processing steps such as Hough circles, it can slightly improves the computation power required to read the Qr code and obtains information about it. We can also imagine a lot of Augmented reality applications linked with this field and we will discuss about it in the conclusion as a future work.
 
 Somehow, this method got also some really weak points. It appears to be sensitive to some really weak points. It appears to be sensitive to deformation and to motions. However, the motion problem could be fixed with pre-processing steps
 
@@ -417,14 +417,3 @@ We have thus completed navigation, localization, mapping, QR code detection and 
 [Wiki ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
 
 All the other relevant used resources have been hyperlinked throughout the report itself.
-
-
-
-
-
-
-
-
-
-
-
