@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find turtlebot_vibot_bringup)/launch/minimal_rplidar.launch" />
+  <include file="$(find turtlebot_vibot_bringup)/launch/3dsensor_rplidar.launch" />
+  <include file="$(find turtlebot_vibot_nav)/launch/amcl_demo_rplidar.launch" >
+    <arg name="map_file" value="$(find turtlebot_vibot_nav)/maps/Soon_map_15Nov.yaml" />
+  </include>
+</launch>
