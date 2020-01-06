@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+  <include file="$(find rbx1_vision)/launch/qr_read_soon.launch" />
+<!--  <node pkg="grp_5" name="move4test" type="nodes/test_joker.py" output="screen"/ -->
+<!--  <include file="$(find rbx1_vision)/launch/qr_read.launch" /-->
+</launch>
