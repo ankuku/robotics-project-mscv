@@ -25,6 +25,7 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
     - [Using PyZbar](#using-pyzbar)
     - [Playing sound](#playing-sound)
     - [Advantages and challenges of using PyZbar](#Advantages-and-challenges-of-using-PyZbar)
+- [Challenges Faced](#Challenges-Faced)
 
 # Introduction
 
@@ -386,3 +387,38 @@ Somehow, this method got also some really weak points. It appears to be sensitiv
 
 
 # Challenges Faced
+
+- The navigation sometimes was disturbed because of the uneven surface. While translation would not be affected very much by the uneven surface, rotation on uneven surface was challenging.
+
+- Coding for QR code detection and combining it with playing music on Kobuki was one of the most challenging tak we faced. The music wold not stop until the Kobuki base was reset.
+
+- The music also could not be played while the Kobuki base is moving and would jerk and stutter if done so. We are yet to figure out why that was the case.
+
+- We had to resort to create a python script from scratch in order to detect the QR code in the image accessed by Kinect's RGB camera. Here's is we would have prefered using a talker and listener approach, which we have but have to involve a lot of work arounds.
+
+- We tried to build a 3D depth map using packages such as _rgbslam\_v2_. But given the time we had spent already on combining navigation and music playing on Kobuki base, we dropped further testing of 3D map building.
+
+
+
+# Conclusion
+
+We have thus completed navigation, localization, mapping, QR code detection and publishing of music upon detection by the robot successfully. Although we have arrived here through much trial and error, we were able to learn a lot about ROS. The main takeaways from the project were to breaking down of bigger problems into smaller ones and then working on it one at a time, instead of trying different packages which might work. We took the basics of what was taught in the class and through literature survey and help from online forums and our colleagues in the classroom, completed what we originally intended to do. For us, the results of the project are satisfactory but we look forward to improve and combine more capabilities into the Turtlebot in the future.
+
+
+# References
+[ROS by Example, Volume 1](http://file.ncnynl.com/ros/ros_by_example_v1_indigo.pdf)
+
+[Wiki ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
+
+All the other relevant used resources have been hyperlinked throughout the report itself.
+
+
+
+
+
+
+
+
+
+
+
