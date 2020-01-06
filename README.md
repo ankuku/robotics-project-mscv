@@ -17,6 +17,9 @@ Ralph SEULIN, David FOFI, Raphael DUVERNE, Marc BLANCHON, Thibault CLAMENS
 - [Introduction](#introduction)
   - [Overview](#overview)
 - [Objectives](#objectives)
+- [Methodology](#methodology)
+ - [Mapping](#mapping)
+ - [Localization and Navigation](#Localization and Navigation via the RVIZ)
 
 
 # Introduction
@@ -89,12 +92,10 @@ The packages we have used in our project are:
  - [*rbx1*](https://github.com/pirobot/rbx1) - 
  ROS By Example or rbx, contains multiple nodes which make use of various control nodes on both the master and the client terminal. We exclusively make use of a Python script in the subpackage _cv\_bridge\_demo.py_ in '_rbx1\_vision_' which we have modified to add our script to detect the QR code from Kinect's camera using OpenCV libraries.
 
-- [*rplidar_ros*](https://github.com/Slamtec/rplidar_ros) - 
+ - [*rplidar_ros*](https://github.com/Slamtec/rplidar_ros) - 
+A Lidar package from Slamtec, installation and configuration of it is required for the operation of the Lidar.
 
-A Lidar package from Slamtec, installation and configuration of it is required for the operation of the Lidar
-
-- [*cv_bridge*](http://wiki.ros.org/cv_bridge) -
-
+ - [*cv_bridge*](http://wiki.ros.org/cv_bridge) -
 Converts between ROS Image messages and OpenCV images. As the QR code reader program is based on the OpenCV platform, the bridge is required to translate between ROS and the OpenCV program.  
 
  - [*turtlebot\_rviz\_launchers*](http://wiki.ros.org/turtlebot_rviz_launchers) - 
@@ -107,7 +108,7 @@ $ git clone https://github.com/synthaseatp/
 ```
 
 The first launch file calls for the following nodes:
-> roslaunch grp_5_master grp_5.launch
+> roslaunch grp_5 grp_5_master.launch
 
 The launch file executes the following launch files on the client:
 > turtlebot_vibot_bringup 3dsensor_rplidar.launch
@@ -121,25 +122,25 @@ Another launch file launches a Python script modified from _rbx1_ package which 
 > sound_publisher sound_publisher.launch
 
 
-# Mapping
+## Mapping
 
 The mapping was conducted with the reference guide provided from the lecturer [*turtlebot\_vibot*](https://github.com/roboticslab-fr/turtlebot_vibot).
 
 Utilising Lidar, and manual control of the turtlebot through the use of the joystick, we bring the turtlebot around the lab in order to map out the lab.
 
 We first perform the minimum launch on the turtlebot
-```
+``` {.shell}
 $ roslaunch turtlebot_vibot_bringup minimal_rplidar.launch
 ```
 followed by initialising the modofied gmapping demo file 
 
-```
+``` {.shell}
 $ roslaunch turtlebot_vibot_nav gmapping_demo_rplidar.launch
 ```
 
 Next we need to initialise the joystick teleop for the logitech controller on the Workstation
 ```
-$roslaunch turtlebot_teleop logitech.launch --screen
+$ roslaunch turtlebot_teleop logitech.launch --screen
 ```
 
 As well as the Rviz on the workstation for visualization
@@ -151,31 +152,31 @@ After moving carefully behind the turtlebot, we are able to obtain the following
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/map.JPG)
 
 Which is saved with the following command 
-```
+``` {.shell}
 $ roscd turtlebot_vibot_nav/maps/
 
 $ rosrun map_server map_saver -f my_map
 ```
 
-# Localization and  Navigation via the RVIZ
+## Localization and Navigation via the RVIZ
 
 Before we can proceed with the navigation of the turtlebot, we need to first localize the map and then run the robot in the RVIZ manually to obtain the point coordinates and quartenion of the map. 
 
 We first define the turtlebot mapfile variable and launch the AMCL demo file together using the following command 
 
-```
+``` {.shell}
 $ roslaunch turtlebot_vibot_nav amcl_demo_rplidar.launch map_file:=`rospack find turtlebot_vibot_nav`/maps/Soon_map_15Nov.yaml
 ```
 While we could also export the turtlebot mapfile variable using the following command, 
 
-```
+``` {.shell}
 $ export TURTLEBOT_MAP_FILE=/...path.../map.yaml
 ```
 We noticed that sometimes the command will result in a corrupted map, causing failure during the navigation process. 
 
 We then run the RVIZ on the workstation 
 
-```
+``` {.shell}
 $ roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
 ```
 
@@ -196,7 +197,7 @@ We then select 4 waypoints on the map to be used during the autonomous navigatio
 5) Rear- The fourth way point, which is at the back of the lab 
 
 
-# Localization, Autonomous Navigation, and Task Activation
+## Localization, Autonomous Navigation, and Task Activation
 
 The core of the program is based on the ROS by Example code that is given to us in the ROS By Example Vol1, that can be obtained via this link 
 
@@ -205,75 +206,76 @@ https://github.com/pirobot/rbx1/blob/indigo-devel/rbx1_nav/nodes/nav_test.py
 The program has been modified in order to suit and parts of the program is explained as follows: 
 ```
 class NavTest():
-    def __init__(self):
-        rospy.on_shutdown(self.shutdown)
+  def __init__(self):
+    rospy.on_shutdown(self.shutdown)
 
-        # How long in seconds should the robot pause at each location?
-        self.rest_time = rospy.get_param("~rest_time", 10)
+    # How long in seconds should the robot pause at each location?
+    self.rest_time = rospy.get_param("~rest_time", 10)
 
 ```
 We set the time for how long the robot will stop at each location. The reason why this is important is to give enough time for the robot to read the code and play the song. 
 
 ```
 locations = dict()
-
-        locations['Greek'] = Pose(Point(1.767, -0.075, 0.000), Quaternion(0.000, 0.000, 0.694, 0.720))
-        locations['Front'] = Pose(Point(4.991, -2.083, 0.000), Quaternion(0.000, 0.000, -0.003, 1.000))
-        locations['France'] = Pose(Point(1.973, -3.711, 0.000), Quaternion(0.000, 0.000, -0.708, 0.706))
-        locations['Rear'] = Pose(Point(-1.036,-1.389, 0.000), Quaternion(0.000, 0.000, 1.000,0.013 ))
-        locations['Home'] = Pose(Point(-0.038, 0.039, 0.000), Quaternion(0.000, 0.000, 0.690, 0.724))
+  locations['Greek'] = Pose(Point(1.767, -0.075, 0.000), Quaternion(0.000, 0.000, 0.694, 0.720))
+  locations['Front'] = Pose(Point(4.991, -2.083, 0.000), Quaternion(0.000, 0.000, -0.003, 1.000))
+  locations['France'] = Pose(Point(1.973, -3.711, 0.000), Quaternion(0.000, 0.000, -0.708, 0.706))
+  locations['Rear'] = Pose(Point(-1.036,-1.389, 0.000), Quaternion(0.000, 0.000, 1.000,0.013 ))
+  locations['Home'] = Pose(Point(-0.038, 0.039, 0.000), Quaternion(0.000, 0.000, 0.690, 0.724))
 ```
 
 The waypoints are then built into a dictionary, specifying the coordinates as well as the Quaternion pose of the robot. 
 
 ```
-   # Subscribe to the move_base action server
-        self.move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
+# Subscribe to the move_base action server
+self.move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
+self.bridgeDemo = qr_read.cvBridgeDemo()
 
-        self.bridgeDemo = qr_read.cvBridgeDemo()
-
-        rospy.loginfo("Waiting for move_base action server...")
+rospy.loginfo("Waiting for move_base action server...")
 ```
 We then subscribe to the move base action server along with the QR code reader information. 
 
 ```
 # Begin the main loop and run through a sequence of locations
-        while not rospy.is_shutdown():
-            # If we've gone through the current sequence,
-            # start with a new random sequence
-            if i == n_locations:
-                i = 0
-                sequence = ["Greek", "Front", "France", "Rear", "Home"]
-                # Skip over first location if it is the same as
-                # the last location
-                if sequence[0] == last_location:
-                    i = 1
+while not rospy.is_shutdown():
+    # If we've gone through the current sequence,
+    # start with a new random sequence
+  if i == n_locations:
+      i = 0
+      sequence = ["Greek", "Front", "France", "Rear", "Home"]
+      # Skip over first location if it is the same as
+      # the last location
+      if sequence[0] == last_location:
+          i = 1
 
-            # Get the next location in the current sequence
-            location = sequence[i]
+  # Get the next location in the current sequence
+  location = sequence[i]
 ```
 Here we define the sequence in which the Turtlebot will move from one point to another. The turtle bot is set up so that it will move from the Home>Greek>Front>France>Rear before finally returning to its home position. After which it will repeat the whole process again. 
 
 ```
 if not finished_within_time:
-                self.move_base.cancel_goal()
-                rospy.loginfo("Timed out achieving goal")
-            else:
-                state = self.move_base.get_state()
-                if state == GoalStatus.SUCCEEDED:
-                    rospy.loginfo("Goal succeeded!")
-                    n_successes += 1
-                    distance_traveled += distance
-                    rospy.loginfo("State:" + str(state))
-                    self.bridgeDemo.talk()
-                else:
-                  rospy.loginfo("Goal failed with error code: " + str(goal_states[state]))
+  self.move_base.cancel_goal()
+  rospy.loginfo("Timed out achieving goal")
+else:
+  state = self.move_base.get_state()
+  if state == GoalStatus.SUCCEEDED:
+      rospy.loginfo("Goal succeeded!")
+      n_successes += 1
+      distance_traveled += distance
+      rospy.loginfo("State:" + str(state))
+      self.bridgeDemo.talk()
+  else:
+    rospy.loginfo("Goal failed with error code: " + str(goal_states[state]))
 ```
 Here we begin the reading process each time the robot has successfully reached its position. When the turtlebot sucessfully reaches a targetted waypoint, it will call out to the QR reader module, read the code that is displayed by the QR code, which will then be displayed in the form of a string. This in turn will then activate the song player to play a song according to the code that it has read.
 
 If the robot has failed to reach its goal for whatever reason, it will print out an error message. 
 
 The turtlebot will continue to go around the waypoints, until the program is terminated. 
+
+## QR Detection and Sound Play
+
 
 
 
