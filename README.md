@@ -172,7 +172,7 @@ As well as the Rviz on the workstation for visualization
 ```
 $ roslaunch turtlebot_rviz_launchers view_navigation.launch
 ```
-After moving carefully behind the turtlebot, we are able to obtain the following map 
+After moving carefully behind the turtlebot, we are able to obtain the following map:
 
 ![alt test](https://github.com/WinSoon/robotics-project-mscv/blob/master/img/map.JPG)
 
@@ -299,6 +299,10 @@ If the robot has failed to reach its goal for whatever reason, it will print out
 
 The turtlebot will continue to go around the waypoints, until the program is terminated. 
 
+Here's the view of start of the navigation:
+![begin](https://github.com/synthaseatp/robotics-project-mscv/blob/master/Image/begin.png)
+
+
 ## QR Detection and Sound Play
 
 #### using Pyzbar
@@ -360,7 +364,7 @@ Thanks to this different information we will be able to do several interesting w
 
 #### Playing sound
 
-Using package of '_sound\_package_' and publishing unique sounds when the QR code are sucessfully decrypted.
+Using package named _sound\_package_ and publishing unique sounds when the QR code are sucessfully decrypted.
 
 ```
 def talker(self, datain):
@@ -378,7 +382,7 @@ def talker(self, datain):
   self.song_pub.publish(Song_cmd)
   rospy.sleep(1)
 ```
-Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team. May the Force be with you.
+Custom music tunes are played at each detection of QR code which was encoded by Fabio in our team. May the Force be with him.
 
 #### Advantages and challenges of using PyZbar
 
