@@ -301,6 +301,7 @@ The turtlebot will continue to go around the waypoints, until the program is ter
 
 Here's the view of start of the navigation:
 ![begin](https://github.com/synthaseatp/robotics-project-mscv/blob/master/Image/begin.png)
+Where you can see that we accessing depth map, RGB image and a processed image showing edges in invidual windows. In the background is the RVIZ simulator which shows the current map of the lab.
 
 
 ## QR Detection and Sound Play
