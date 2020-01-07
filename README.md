@@ -1,3 +1,5 @@
+[Video link](https://youtu.be/8iMYiPuh4qA)
+
 # Université de Bourgogne
 
 Robotics Engineering - ROS Project
