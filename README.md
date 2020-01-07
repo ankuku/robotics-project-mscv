@@ -111,6 +111,7 @@ Download the MSCV5 launch files by navigating to your _catkin\_ws/src_ folder an
 
 ``` {.shell}
 $ git clone https://github.com/synthaseatp/grp_5_master.git
+$ git clone https://github.com/synthaseatp/sound_package.git
 ```
 
 The first launch file calls for the following nodes:
