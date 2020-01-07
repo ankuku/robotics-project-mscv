@@ -411,7 +411,11 @@ Somehow, this method got also some really weak points. It appears to be sensitiv
 
 # Conclusion
 
-We have thus completed navigation, localization, mapping, QR code detection and publishing of music upon detection by the robot successfully. Although we have arrived here through much trial and error, we were able to learn a lot about ROS. The main takeaways from the project were to breaking down of bigger problems into smaller ones and then working on it one at a time, instead of trying different packages which might work. We took the basics of what was taught in the class and through literature survey and help from online forums and our colleagues in the classroom, completed what we originally intended to do. For us, the results of the project are satisfactory but we look forward to improve and combine more capabilities into the Turtlebot in the future.
+We have thus completed navigation, localization, mapping, QR code detection and publishing of music upon detection by the robot successfully. 
+
+We also learnt an important property of ROS. The talker and listener topics of ROS are a great way to learn about basics of operating system, since alot of process signals in Android, an operating system based on Linux, work the same way and this offers quite an insight in the basics of building an efficient system.  
+
+Although we have arrived here through much trial and error, we were able to learn a lot about ROS. The main takeaways from the project were to breaking down of bigger problems into smaller ones and then working on it one at a time, instead of trying different packages which might work. We took the basics of what was taught in the class and through literature survey and help from online forums and our colleagues in the classroom, completed what we originally intended to do. For us, the results of the project are satisfactory but we look forward to improve and combine more capabilities into the Turtlebot in the future.
 
 
 # References
